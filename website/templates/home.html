@@ -1,0 +1,25 @@
+{% extends "base.html" %} {% block title %}Home{% endblock %}
+{% block content %}
+    <h1 align = "center">Institutions</h1>
+    <!-- <ul class = "list-group list-group-flush" id = "notes">
+      {% for inst in institutions %}
+        {{ inst.id }}
+        {{ inst.name }}
+        {{ inst.city }}
+      {% endfor %}
+    </ul> -->
+    <table id = "customers">
+      <tr>
+        <th>Id</th>
+        <th>Name</th>
+        <th>City</th>
+      </tr>
+      {% for inst in institutions %}
+      <tr>
+        <td><a href = "#">{{ inst.id }}</a></td>
+        <td><a href = "#">{{ inst.name }}</a></td>
+        <td><a href = "#">{{ inst.city }}</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+{% endblock %}

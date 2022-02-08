@@ -1,0 +1,16 @@
+{% extends "base.html" %} {% block title %}Search{% endblock %} {% block content
+    %}
+    <form method = "POST">
+      <h3 align = "center">Search</h3>
+      <div class = "form-group">
+        <label for = "Artist">Artist</label>
+        <input type = "text" class = "form-control" id = "artist" name = "artist" placeholder = "Enter artist's name" />
+      </div>
+      <div class = "form-group">
+        <label for = "Exhibit">Exhibit</label>
+        <input type = "text" class = "form-control" id = "exhibit" name = "exhibit" placeholder = "Enter exhibit's name" />
+      </div>
+      <br />
+      <button type = "submit" class = "btn btn-primary">Search</button>
+    </form>
+    {% endblock %}
