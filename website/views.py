@@ -1,6 +1,6 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for, jsonify
 from flask_login import login_required, current_user
-from .models import Institution, Exhibit, Note
+from .models import Institution, Exhibit
 from . import db
 import json
 
@@ -16,17 +16,17 @@ def home():
     return render_template("home.html", user = current_user, institutions = Institution.query.all())
 
 
-@views.route('/delete-note', methods = ['POST'])
-def delete_note():
-    note = json.loads(request.data)
-    noteId = note['noteId']
-    note = Note.query.get(noteId)
-    if note:
-        if note.user_id == current_user.id:
-            db.session.delete(note)
-            db.session.commit()
+# @views.route('/delete-note', methods = ['POST'])
+# def delete_note():
+#     note = json.loads(request.data)
+#     noteId = note['noteId']
+#     note = Note.query.get(noteId)
+#     if note:
+#         if note.user_id == current_user.id:
+#             db.session.delete(note)
+#             db.session.commit()
 
-    return jsonify({})
+#     return jsonify({})
 
 
 def clean_string(string):
