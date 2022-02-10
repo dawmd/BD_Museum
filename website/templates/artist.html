@@ -25,6 +25,10 @@
         {% endfor %}
     </un>
     {% endif %}
+    {% if current_user.is_authenticated %}
+    <br />
+    <a href = "../edit-artist?id={{ artist.id }}" class = "edit-button">Edit</a>
+    {% endif %}
 
     {% endif %}
 {% endblock %}

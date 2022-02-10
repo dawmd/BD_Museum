@@ -45,3 +45,17 @@
 .info span {
     font-weight: 300;
 }
+
+.edit-button {
+    background-color: #5a5a5a;
+    border: none;
+    padding: 15px 32px;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    text-align: center;
+    color: white;
+    text-decoration: none;
+}
+

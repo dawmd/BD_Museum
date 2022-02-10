@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+
+{% block title %}
+  Artist - edit
+{% endblock %}
+{% block content %}
+  {% if not ar_name %}
+    <h1>Error. Artist not found.</h1>
+  {% else %}
+
+  <form method = "POST">
+    <h3 align = "center">Edit the artist</h3>
+    <div class = "form-group">
+      <label for = "name">Name</label>
+      <input type = "text" class = "form-control" id = "name" name = "name" value = "{{ ar_name }}" />
+    </div>
+    <div class = "form-group">
+      <label for = "birth">Birth</label>
+      <input type = "text" class = "form-control" id = "birth" name = "birth" value = "{{ ar_birth }}" />
+    </div>
+    <div class = "form-group">
+      <label for = "death">Death</label>
+      <input type = "text" class = "form-control" id = "death" name = "death" value = "{{ ar_death }}" />
+    </div>
+    <br />
+    <button type = "submit" class = "btn btn-primary">Update</button>
+  </form>
+
+  {% endif %}
+{% endblock %}

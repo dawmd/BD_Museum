@@ -90,9 +90,9 @@ def artist():
     # db.session.add(nar)
     # db.session.commit()
 
-    ex = Exhibit(author = 3, localization = 2, title = 'サスケは元気ですか', type = 'something', x_size = 2, y_size = 2, z_size = 1, state = 1)
-    db.session.add(ex)
-    db.session.commit()
+    # ex = Exhibit(author = 3, localization = 2, title = 'サスケは元気ですか', type = 'something', x_size = 2, y_size = 2, z_size = 1, state = 1)
+    # db.session.add(ex)
+    # db.session.commit()
     
     id = request.args.get('id')
     artist = Artist.query.filter(Artist.id == id).first()
@@ -119,3 +119,47 @@ def exhibit():
     if exhibit:
         return render_template("exhibit.html", user = current_user, exhibit = exhibit)
     return render_template("exhibit.html", user = current_user)
+
+def is_valid_number(str):
+    if len(str) > 0 and str[0] == '-':
+        return str[1:].isnumeric()
+    else:
+        return str.isnumeric()
+
+@views.route('/edit-artist', methods = ['GET', 'POST'])
+def edit_artist():
+    id = request.args.get('id')
+    artist = Artist.query.filter(Artist.id == id).first()
+
+    if request.method == 'POST':
+        name = request.form.get('name')
+        birth = request.form.get('birth')
+        death = request.form.get('death')
+
+        if not name:
+            flash('You must provide the name.', category = 'error')
+        else:
+            name = clean_string(name.lstrip())
+            birth = clean_string(birth.lstrip())
+            death = clean_string(death.lstrip())
+
+            if not name:
+                flash('You must provide the name.', category = 'error')
+            elif not is_valid_number(birth):
+                flash('The date of birth must be a valid integer number.', category = 'error')
+            elif len(death) > 0 and not is_valid_number(death):
+                flash('The date of death must be a valid integer number or empty.', category = 'error')
+            else:
+                artist.name = name
+                artist.birth_date = birth
+                artist.death_date = death
+                db.session().commit()
+                flash('Artist succesfully updated!', category = 'success')
+                return redirect(url_for('views.artist', id = id))
+
+    if artist:
+        if artist.death_date:
+            return render_template("edit-artist.html", user = current_user, ar_name = artist.name, ar_birth = artist.birth_date, ar_death = artist.death_date)
+        else:
+            return render_template("edit-artist.html", user = current_user, ar_name = artist.name, ar_birth = artist.birth_date, ar_death = "")
+    return render_template("edit-artist.html", user = current_user)
