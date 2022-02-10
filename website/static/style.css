@@ -29,3 +29,19 @@
     height: 100%;
     width: 100%;
 }
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.info img {
+    height: auto;
+    max-height: 500px;
+}
+
+.info span {
+    font-weight: 300;
+}

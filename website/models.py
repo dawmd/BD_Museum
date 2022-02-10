@@ -19,8 +19,8 @@ class Gallery(db.Model):
 class Artist(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(150))
-    birth_date = db.Column(db.DateTime(timezone = True))
-    death_date = db.Column(db.DateTime(timezone = True))
+    birth_date = db.Column(db.Integer)
+    death_date = db.Column(db.Integer)
 
 class Exhibit(db.Model):
     id = db.Column(db.Integer, primary_key = True)

@@ -2,6 +2,38 @@
 {% block content %}
     {% if artists %}
     <h1 align = "center">Results</h1>
+    <br />
+    <table id = "customers">
+        <tr>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Birth</th>
+          <th>Death</th>
+        </tr>
+        {% for art in artists %}
+        <tr>
+          <td><a href = "artist?id={{ art.id }}">{{ art.id }}</a></td>
+          <td><a href = "artist?id={{ art.id }}">{{ art.name }}</a></td>
+          <td><a href = "artist?id={{ art.id }}">{{ art.birth_date }}</a></td>
+          <td><a href = "artist?id={{ art.id }}">{{ art.death_date }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% elif exhibits %}
+    <h1 align = "center">Results</h1>
+    <br />
+    <table id = "customers">
+        <tr>
+          <th>Id</th>
+          <th>Title</th>
+        </tr>
+        {% for exh in exhibits %}
+        <tr>
+          <td><a href = "exhibit?id={{ exh.id }}">{{ exh.id }}</a></td>
+          <td><a href = "exhibit?id={{ exh.id }}">{{ exh.title }}</a></td>
+        </tr>
+        {% endfor %}
+    </table>
     {% else %}
     <h1 align = "center">No results</h1>
     {% endif %}

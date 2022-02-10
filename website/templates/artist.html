@@ -1,0 +1,30 @@
+{% extends "base.html" %} {% block title %}Artist{% endblock %}
+{% block content %}
+    {% if not artist %}
+    <h1>No artist found</h1>
+    {% else %}
+
+    <div class = "info">
+        <div>
+            <img src = "{{url_for('static', filename = 'placeholder.png')}}" alt = "artist_image" />
+        </div>
+        <div>
+            <h3 align = "left">Id: <span>{{ artist.id }}</span></h3>
+            <h3 align = "left">Name: <span>{{ artist.name }}</span></h3>
+            <h3 align = "left">Born in: <span>{{ birth }}</span></h3>
+            {% if death %}
+            <h3 align = "left">Died in: <span>{{ death }}</span></h3>
+            {% endif %}
+        </div>
+    </div>
+    {% if exhibits %}
+    <h2>List of works</h2>
+    <un>
+        {% for exh in exhibits %}
+        <li><a href = "../exhibit?id={{ exh.id }}">{{ exh.title }}</a></li>
+        {% endfor %}
+    </un>
+    {% endif %}
+
+    {% endif %}
+{% endblock %}
